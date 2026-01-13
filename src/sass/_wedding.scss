@@ -1,0 +1,439 @@
+@use "variables" as *;
+@use "breakpoints" as *;
+#wedding-info {
+    min-height: 100dvh;
+    .header-title {
+        text-align: center;
+        margin-bottom: 50px;
+        img {
+            width: 250px;
+        }
+        p {
+            font-family: "Allura", sans-serif;
+            font-size: 3.5rem; // 56px
+            color: #1d1c1c;
+            @include responsive(font-size, (
+                lg: 3rem,   // 48px
+                md: 2.5rem, // 40px
+                sm: 2rem    // 32px
+            ));
+        }
+    }
+    .image-gallery {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        img {
+            width: 30%;
+            border-radius: 20px;
+        }
+        img:nth-child(1),
+        img:nth-child(3) {
+            margin-top: 100px;
+            box-shadow: 0 0 8px rgba(152, 151, 151, 0.1);
+            @include responsive(margin-top, (
+                lg: 80px,
+                md: 60px,
+                sm: 20px
+            ));
+        }
+    }
+    .wedding-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        padding: 20px 0;
+        .title-body {
+            text-align: center;
+            padding: 10px 0;
+            .text-01 {
+                font-size: 2.5rem; // 40px
+                font-family: "Roboto Slab", sans-serif;
+                font-weight: 600;
+                letter-spacing: 2px;
+                @include responsive(font-size, (
+                    lg: 2.2rem, // 35.2px
+                    md: 2rem,   // 32px
+                    sm: 0.8125rem  // 13px
+                ));
+            }
+            .text-02 {
+                font-size: 2rem; // 32px
+                font-family: $font-family-accent;
+                letter-spacing: 2px;
+                margin-bottom: 30px;
+                @include responsive(font-size, (
+                    lg: 1.75rem, // 28px
+                    md: 1.5rem,  // 24px
+                    sm: 1.125rem // 18px
+                ));
+            }
+        }
+        .wedding-time {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 2rem;
+            font-family: $font-family-third;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #1d1c1c;
+            width: 100%;
+            height: 70px;
+            margin-bottom: 20px;
+            @include responsive(font-size, (
+                lg: 1.15rem, // 28px
+                md: 0.8rem,  // 24px
+                sm: 0.6rem  // 12px
+            ));
+            .hour {
+                width: 100%;
+                height: 100px;
+                border-right: 2px solid #1d1c1c;
+                display: flex;
+                // flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+            .month {
+                width: 100%;
+                height: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                text-align: center;
+                gap: 1px;
+            }
+            .year {
+                width: 100%;
+                height: 100px;
+                border-left: 2px solid #1d1c1c;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+        .lunar-calendar {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.5rem; // 24px
+            font-family: "Roboto Slab", sans-serif;
+            font-style: italic;
+            @include responsive(font-size, (
+                lg: 1.25rem, // 20px
+                md: 1rem,    // 16px
+                sm: 0.875rem // 14px
+            ));
+        }
+        .title-footer {
+            text-align: center;
+            font-size: 1.5rem; // 24px
+            font-family: "Roboto Slab", sans-serif;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #1d1c1c;
+            margin: 20px 0;
+            @include responsive(font-size, (
+                lg: 1.25rem, // 20px
+                md: 1rem,    // 16px
+                sm: 0.875rem // 14px
+            ));
+        }
+        // Container cho 2 cards
+        .wedding-locations-wrapper {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin: 40px 0;
+            pointer-events: auto !important;
+
+            @include responsive(grid-template-columns, (
+                lg: repeat(2, 1fr),
+                md: repeat(1, 1fr),
+                sm: repeat(1, 1fr)
+            ));
+            @include responsive(gap, (
+                lg: 30px,
+                md: 25px,
+                sm: 20px
+            ));
+        }
+
+        // Card location chung
+        .wedding-location-card {
+            background: #fff;
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+
+            @include responsive(padding, (
+                lg: 35px 25px,
+                md: 30px 20px,
+                sm: 25px 18px
+            ));
+
+            // Gradient background overlay
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 5px;
+                background: linear-gradient(90deg, #c62929, #ebae2a, #c62929);
+                transition: height 0.5s ease;
+            }
+
+            &:hover {
+                transform: translateY(-10px) scale(1.02);
+                box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+
+                &::before {
+                    height: 100%;
+                    opacity: 0.05;
+                }
+
+                .location-icon {
+                    transform: scale(1.2) rotate(10deg);
+                }
+
+                .btn-map {
+                    transform: translateY(-3px);
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                }
+            }
+
+            // Header với icon
+            .location-header {
+                margin-bottom: 25px;
+
+                .icon-wrapper {
+                    width: 80px;
+                    height: 80px;
+                    margin: 0 auto 20px;
+                    background: linear-gradient(135deg, #ebae2a 0%, #ffd93d 100%);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    box-shadow: 0 10px 30px rgba(235, 174, 42, 0.4);
+
+                    @include responsive(width, (
+                        lg: 70px,
+                        md: 65px,
+                        sm: 60px
+                    ));
+                    @include responsive(height, (
+                        lg: 70px,
+                        md: 65px,
+                        sm: 60px
+                    ));
+
+                    .location-icon {
+                        font-size: 2.5rem;
+                        transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+                        @include responsive(font-size, (
+                            lg: 2.2rem,
+                            md: 2rem,
+                            sm: 1.8rem
+                        ));
+                    }
+                }
+
+                .location-title {
+                    font-family: "Roboto Slab", sans-serif;
+                    font-weight: 700;
+                    font-size: 1.75rem;
+                    color: #c62929;
+                    margin: 0;
+                    letter-spacing: 1.5px;
+                    position: relative;
+                    z-index: 1;
+
+                    @include responsive(font-size, (
+                        lg: 1.5rem,
+                        md: 1.35rem,
+                        sm: 1.2rem
+                    ));
+                }
+            }
+
+            // Body với địa chỉ
+            .location-body {
+                margin: 25px 0;
+                padding: 20px 0;
+                border-top: 2px solid #f0f0f0;
+                border-bottom: 2px solid #f0f0f0;
+                position: relative;
+                z-index: 1;
+
+                @include responsive(margin, (
+                    lg: 20px 0,
+                    md: 18px 0,
+                    sm: 15px 0
+                ));
+                @include responsive(padding, (
+                    lg: 18px 0,
+                    md: 15px 0,
+                    sm: 12px 0
+                ));
+
+                .location-address {
+                    font-family: "Roboto Slab", sans-serif;
+                    font-size: 1.125rem;
+                    font-weight: 400;
+                    line-height: 1.8;
+                    color: #555;
+                    margin: 0;
+
+                    @include responsive(font-size, (
+                        lg: 1.05rem,
+                        md: 1rem,
+                        sm: 0.95rem
+                    ));
+                }
+            }
+
+            // Footer với button
+            .location-footer {
+                margin-top: 25px;
+                position: relative;
+                z-index: 1;
+
+                @include responsive(margin-top, (
+                    lg: 20px,
+                    md: 18px,
+                    sm: 15px
+                ));
+
+                .btn-map {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 10px;
+                    padding: 15px 35px;
+                    border-radius: 50px;
+                    font-family: "Roboto Slab", sans-serif;
+                    font-size: 1.125rem;
+                    font-weight: 600;
+                    text-decoration: none;
+                    color: #fff;
+                    background: linear-gradient(135deg, #c62929 0%, #d64545 100%);
+                    box-shadow: 0 8px 25px rgba(198, 41, 41, 0.4);
+                    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+                    cursor: pointer;
+                    position: relative;
+                    overflow: hidden;
+
+                    @include responsive(padding, (
+                        lg: 13px 30px,
+                        md: 12px 28px,
+                        sm: 10px 25px
+                    ));
+                    @include responsive(font-size, (
+                        lg: 1.05rem,
+                        md: 1rem,
+                        sm: 0.9rem
+                    ));
+                    @include responsive(gap, (
+                        lg: 8px,
+                        md: 8px,
+                        sm: 6px
+                    ));
+
+                    .btn-icon {
+                        font-size: 1.3rem;
+                        transition: transform 0.3s ease;
+
+                        @include responsive(font-size, (
+                            lg: 1.2rem,
+                            md: 1.1rem,
+                            sm: 1rem
+                        ));
+                    }
+
+                    .btn-text {
+                        position: relative;
+                    }
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: -100%;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+                        transition: left 0.6s ease;
+                    }
+
+                    &:hover {
+                        &::before {
+                            left: 100%;
+                        }
+
+                        .btn-icon {
+                            transform: scale(1.2) rotate(15deg);
+                        }
+                    }
+
+                    &:active {
+                        transform: translateY(0) scale(0.98);
+                    }
+                }
+            }
+
+            // Màu riêng cho nhà gái - tone vàng gold nhẹ
+            &.bride-side {
+                .icon-wrapper {
+                    background: linear-gradient(135deg, #ebae2a 0%, #f5c563 100%);
+                    box-shadow: 0 10px 30px rgba(235, 174, 42, 0.4);
+                }
+
+                .location-title {
+                    color: #ebae2a;
+                }
+
+                .btn-map {
+                    background: linear-gradient(135deg, #ebae2a 0%, #f5c563 100%);
+                    box-shadow: 0 8px 25px rgba(235, 174, 42, 0.4);
+
+                    &:hover {
+                        box-shadow: 0 10px 30px rgba(235, 174, 42, 0.5);
+                    }
+                }
+            }
+
+            // Màu riêng cho nhà trai - tone đỏ
+            &.groom-side {
+                .icon-wrapper {
+                    background: linear-gradient(135deg, #c62929 0%, #d64545 100%);
+                    box-shadow: 0 10px 30px rgba(198, 41, 41, 0.4);
+                }
+
+                .location-title {
+                    color: #c62929;
+                }
+
+                .btn-map {
+                    background: linear-gradient(135deg, #c62929 0%, #d64545 100%);
+                    box-shadow: 0 8px 25px rgba(198, 41, 41, 0.4);
+
+                    &:hover {
+                        box-shadow: 0 10px 30px rgba(198, 41, 41, 0.5);
+                    }
+                }
+            }
+        }
+    }
+}

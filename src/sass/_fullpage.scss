@@ -1,0 +1,17 @@
+.fullpage-container {
+  height: 100dvh;
+  overflow: hidden; /* không cho scroll tự do */
+}
+
+.fullpage-wrapper {
+  height: 100dvh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+.fullpage-section {
+  height: 100dvh;
+  scroll-snap-align: start;
+  position: relative;
+}

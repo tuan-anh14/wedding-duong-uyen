@@ -1,0 +1,28 @@
+@use 'reset';
+@use 'variables';
+@use 'breakpoints';
+@use 'global';
+@use 'home';
+@use 'hero';
+@use 'couple';
+@use 'wedding';
+@use 'gallery';
+@use 'thankyou';
+
+/* =========================================================
+   PREVENT IMAGE SCALE ON CLICK - Style tổng quát cho cả app
+   ========================================================= */
+img {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    touch-action: manipulation;
+    
+    &:active {
+        transform: none !important;
+        scale: 1 !important;
+    }
+}

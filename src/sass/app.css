@@ -1,0 +1,1891 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap");
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=My+Soul:regular);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:100,200,300,regular,500,600,700,800,900);
+@import url(https://fonts.googleapis.com/css?family=Allura:regular);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  width: 100%;
+  height: 100dvh;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+section {
+  width: 100%;
+}
+
+/* =========================================================
+   1) CONTAINER SYSTEM
+   ========================================================= */
+.container,
+.container-fluid {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+/* Full width */
+.container-fluid {
+  max-width: 100%;
+}
+
+/* Default mobile */
+.container {
+  max-width: 100%;
+}
+
+/* Breakpoints giống Bootstrap */
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+/* =========================================================
+   2) GRID SYSTEM (12 CỘT)
+   ========================================================= */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+[class*=col-] {
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Hệ 12 cột mặc định */
+.col-1 {
+  width: 8.33%;
+}
+
+.col-2 {
+  width: 16.66%;
+}
+
+.col-3 {
+  width: 25%;
+}
+
+.col-4 {
+  width: 33.33%;
+}
+
+.col-5 {
+  width: 41.66%;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+.col-7 {
+  width: 58.33%;
+}
+
+.col-8 {
+  width: 66.66%;
+}
+
+.col-9 {
+  width: 75%;
+}
+
+.col-10 {
+  width: 83.33%;
+}
+
+.col-11 {
+  width: 91.66%;
+}
+
+.col-12 {
+  width: 100%;
+}
+
+/* -------- Responsive giống Bootstrap -------- */
+/* Mobile ≤576px */
+@media (max-width: 576px) {
+  .col-sm-12 {
+    width: 100%;
+  }
+}
+/* Tablet ≥768px */
+@media (min-width: 768px) {
+  .col-md-12 {
+    width: 100%;
+  }
+  .col-md-6 {
+    width: 50%;
+  }
+  .col-md-4 {
+    width: 33.33%;
+  }
+  .col-md-3 {
+    width: 25%;
+  }
+}
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.05);
+  }
+  40% {
+    transform: scale(0.98);
+  }
+  60% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* --- Background Intro --- */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  pointer-events: auto;
+}
+
+/* Wrapper chứa bg_left + icon_click */
+.bg_left_wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 3;
+  transition: transform 5s ease-in-out;
+}
+
+/* Khi mở, trượt trái toàn bộ */
+.background.opening .bg_left_wrapper {
+  transform: translateX(-200%);
+}
+
+/* Background bên trái */
+.bg_left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.bg_left img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* Background bên phải */
+.bg_right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 2;
+  transition: transform 5s ease-in-out;
+}
+
+.bg_right img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* Khi mở, trượt phải */
+.background.opening .bg_right {
+  transform: translateX(200%);
+}
+
+/* ẨN HOÀN TOÀN */
+.background.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* --- Nút "Thư mời" --- */
+.icon_click {
+  position: absolute;
+  top: 45%;
+  left: 94.5%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  animation: pulse1 1.2s ease-in-out infinite;
+}
+@media (max-width: 1024px) {
+  .icon_click {
+    left: 90%;
+  }
+}
+@media (max-width: 768px) {
+  .icon_click {
+    left: 87%;
+  }
+}
+@media (max-width: 480px) {
+  .icon_click {
+    left: 74%;
+  }
+}
+
+/* --- Nút điều khiển nhạc --- */
+.music-button {
+  position: fixed;
+  bottom: 20px;
+  left: 30px;
+  z-index: 9999;
+  background-color: white;
+  border: 1px solid red;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.music-button .icon {
+  color: red;
+}
+
+.music-button.playing {
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes pulse1 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+#hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  margin: 15px 0;
+  min-height: 100vh;
+  /* ===========================
+       Timeline + Time (đã cân giữa)
+       =========================== */
+  /* ===========================
+       Ảnh hero (phóng lớn hơn, cân giữa)
+       =========================== */
+}
+@media (max-width: 768px) {
+  #hero {
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 480px) {
+  #hero {
+    justify-content: flex-start;
+  }
+}
+#hero .hero-invitation {
+  text-transform: uppercase;
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 36px;
+}
+#hero .hero-invitation {
+  font-size: 36px;
+}
+@media (max-width: 1024px) {
+  #hero .hero-invitation {
+    font-size: 32px;
+  }
+}
+@media (max-width: 768px) {
+  #hero .hero-invitation {
+    font-size: 26px;
+  }
+}
+@media (max-width: 480px) {
+  #hero .hero-invitation {
+    font-size: 24px;
+  }
+}
+#hero .hero-couple-name {
+  font-family: "Imperial Script", cursive;
+  font-size: 4rem;
+  color: #ebae2a;
+  margin: 0.5rem 0;
+  font-weight: 600;
+  animation: heartbeat 2.2s infinite ease-in-out;
+}
+@media (max-width: 1920px) {
+  #hero .hero-couple-name {
+    font-size: 72px;
+  }
+}
+@media (max-width: 1440px) {
+  #hero .hero-couple-name {
+    font-size: 64px;
+  }
+}
+#hero .hero-couple-name {
+  font-size: 48px;
+}
+@media (max-width: 1024px) {
+  #hero .hero-couple-name {
+    font-size: 46px;
+  }
+}
+@media (max-width: 768px) {
+  #hero .hero-couple-name {
+    font-size: 42px;
+  }
+}
+@media (max-width: 480px) {
+  #hero .hero-couple-name {
+    font-size: 32px;
+  }
+}
+#hero .hero-couple-name span {
+  margin: 0 1rem;
+  font-weight: normal;
+}
+#hero .hero-info {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  height: 350px;
+}
+@media (max-width: 768px) {
+  #hero .hero-info {
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  #hero .hero-info {
+    width: 100%;
+  }
+}
+@media (max-width: 1024px) {
+  #hero .hero-info {
+    height: 280px;
+  }
+}
+@media (max-width: 768px) {
+  #hero .hero-info {
+    height: 220px;
+  }
+}
+@media (max-width: 480px) {
+  #hero .hero-info {
+    height: 200px;
+  }
+}
+#hero .hero-info .hero-logo {
+  position: absolute;
+  top: 0;
+  left: 41%;
+  width: 150px;
+  height: 150px;
+}
+@media (max-width: 768px) {
+  #hero .hero-info .hero-logo {
+    width: 130px;
+  }
+}
+@media (max-width: 480px) {
+  #hero .hero-info .hero-logo {
+    width: 100px;
+  }
+}
+@media (max-width: 768px) {
+  #hero .hero-info .hero-logo {
+    height: 130px;
+  }
+}
+@media (max-width: 480px) {
+  #hero .hero-info .hero-logo {
+    height: 100px;
+  }
+}
+@media (max-width: 768px) {
+  #hero .hero-info .hero-logo {
+    left: 37%;
+  }
+}
+@media (max-width: 480px) {
+  #hero .hero-info .hero-logo {
+    left: 36%;
+  }
+}
+#hero .hero-info .hero-icon-left {
+  position: absolute;
+  top: 100px;
+  left: -20px;
+  width: 10%;
+}
+@media (max-width: 768px) {
+  #hero .hero-info .hero-icon-left {
+    top: 70px;
+  }
+}
+@media (max-width: 480px) {
+  #hero .hero-info .hero-icon-left {
+    top: 80px;
+  }
+}
+#hero .hero-info .hero-icon-right {
+  position: absolute;
+  top: 100px;
+  right: -10px;
+  width: 10%;
+}
+@media (max-width: 768px) {
+  #hero .hero-info .hero-icon-right {
+    top: 70px;
+  }
+}
+@media (max-width: 480px) {
+  #hero .hero-info .hero-icon-right {
+    top: 80px;
+  }
+}
+#hero .hero-info .hero-time {
+  position: absolute;
+  top: 180px;
+  left: 39%;
+  font-family: "Roboto Slab";
+  letter-spacing: 0.05rem;
+}
+@media (max-width: 768px) {
+  #hero .hero-info .hero-time {
+    top: 120px;
+  }
+}
+@media (max-width: 480px) {
+  #hero .hero-info .hero-time {
+    top: 100px;
+  }
+}
+@media (max-width: 1024px) {
+  #hero .hero-info .hero-time {
+    left: 37%;
+  }
+}
+@media (max-width: 768px) {
+  #hero .hero-info .hero-time {
+    left: 33%;
+  }
+}
+@media (max-width: 480px) {
+  #hero .hero-info .hero-time {
+    left: 31%;
+  }
+}
+#hero .hero-info .hero-time h3,
+#hero .hero-info .hero-time h5 {
+  font-size: 28px;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  #hero .hero-info .hero-time h3,
+  #hero .hero-info .hero-time h5 {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 480px) {
+  #hero .hero-info .hero-time h3,
+  #hero .hero-info .hero-time h5 {
+    font-size: 1.25rem;
+  }
+}
+#hero .hero-image {
+  margin: 0 auto;
+}
+#hero .hero-image img {
+  width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(72, 60, 60, 0.5);
+}
+@media (max-width: 1024px) {
+  #hero .hero-image img {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  #hero .hero-image img {
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  #hero .hero-image img {
+    width: 100%;
+  }
+}
+@media (max-width: 1024px) {
+  #hero .hero-image img {
+    max-width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  #hero .hero-image img {
+    max-width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  #hero .hero-image img {
+    max-width: 100%;
+  }
+}
+
+#couple-intro {
+  min-height: 100dvh;
+  position: relative;
+  margin: 0 auto;
+}
+#couple-intro .header {
+  position: absolute;
+  top: 0%;
+  left: 47%;
+  width: 6.25rem;
+  height: auto;
+}
+#couple-intro .header {
+  width: 6.25rem;
+}
+@media (max-width: 1024px) {
+  #couple-intro .header {
+    width: 5rem;
+  }
+}
+@media (max-width: 768px) {
+  #couple-intro .header {
+    width: 4rem;
+  }
+}
+@media (max-width: 480px) {
+  #couple-intro .header {
+    width: 3rem;
+  }
+}
+#couple-intro .header {
+  top: 0%;
+}
+@media (max-width: 1024px) {
+  #couple-intro .header {
+    top: 1%;
+  }
+}
+@media (max-width: 768px) {
+  #couple-intro .header {
+    top: 2%;
+  }
+}
+@media (max-width: 480px) {
+  #couple-intro .header {
+    top: 0%;
+  }
+}
+#couple-intro .header {
+  left: 47%;
+}
+@media (max-width: 1024px) {
+  #couple-intro .header {
+    left: 48%;
+  }
+}
+@media (max-width: 768px) {
+  #couple-intro .header {
+    left: 45%;
+  }
+}
+@media (max-width: 480px) {
+  #couple-intro .header {
+    left: 43%;
+  }
+}
+#couple-intro .family-info {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 40px;
+  text-align: center;
+  gap: 40px;
+}
+@media (max-width: 1024px) {
+  #couple-intro .family-info {
+    height: 180px;
+  }
+}
+@media (max-width: 768px) {
+  #couple-intro .family-info {
+    height: 160px;
+  }
+}
+@media (max-width: 480px) {
+  #couple-intro .family-info {
+    height: 140px;
+  }
+}
+#couple-intro .family-info .parent-section {
+  width: 45%;
+  font-family: "Roboto Slab", sans-serif;
+  line-height: 1.5;
+  text-align: center;
+}
+#couple-intro .family-info .parent-section .title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+#couple-intro .family-info .parent-section .title {
+  font-size: 2rem;
+}
+@media (max-width: 1024px) {
+  #couple-intro .family-info .parent-section .title {
+    font-size: 1.75rem;
+  }
+}
+@media (max-width: 768px) {
+  #couple-intro .family-info .parent-section .title {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 480px) {
+  #couple-intro .family-info .parent-section .title {
+    font-size: 1.05rem;
+  }
+}
+#couple-intro .family-info .parent-section .name {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+#couple-intro .family-info .parent-section .name {
+  font-size: 1.5rem;
+}
+@media (max-width: 1024px) {
+  #couple-intro .family-info .parent-section .name {
+    font-size: 1.25rem;
+  }
+}
+@media (max-width: 768px) {
+  #couple-intro .family-info .parent-section .name {
+    font-size: 1.125rem;
+  }
+}
+@media (max-width: 480px) {
+  #couple-intro .family-info .parent-section .name {
+    font-size: 0.65rem;
+  }
+}
+#couple-intro .family-info .parent-section .address {
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-style: italic;
+}
+#couple-intro .family-info .parent-section .address {
+  font-size: 1.25rem;
+}
+@media (max-width: 1024px) {
+  #couple-intro .family-info .parent-section .address {
+    font-size: 1.125rem;
+  }
+}
+@media (max-width: 768px) {
+  #couple-intro .family-info .parent-section .address {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  #couple-intro .family-info .parent-section .address {
+    font-size: 0.55rem;
+  }
+}
+#couple-intro .couple {
+  height: auto;
+  text-align: center;
+}
+#couple-intro .couple .title {
+  font-size: 2rem;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 600;
+}
+#couple-intro .couple .title {
+  font-size: 2rem;
+}
+@media (max-width: 1024px) {
+  #couple-intro .couple .title {
+    font-size: 1.75rem;
+  }
+}
+@media (max-width: 768px) {
+  #couple-intro .couple .title {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 480px) {
+  #couple-intro .couple .title {
+    font-size: 0.8rem;
+  }
+}
+#couple-intro .couple .name {
+  font-size: 3.75rem;
+  font-family: "Imperial Script", cursive;
+  font-weight: 600;
+  color: #ebae2a;
+}
+#couple-intro .couple .name {
+  font-size: 3.5rem;
+}
+@media (max-width: 1024px) {
+  #couple-intro .couple .name {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 768px) {
+  #couple-intro .couple .name {
+    font-size: 2.5rem;
+  }
+}
+@media (max-width: 480px) {
+  #couple-intro .couple .name {
+    font-size: 2rem;
+  }
+}
+#couple-intro .couple .and {
+  font-size: 2.5rem;
+  font-family: "Imperial Script", cursive;
+  color: #ebae2a;
+}
+#couple-intro .couple .and {
+  font-size: 2.5rem;
+}
+@media (max-width: 1024px) {
+  #couple-intro .couple .and {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 768px) {
+  #couple-intro .couple .and {
+    font-size: 1.75rem;
+  }
+}
+@media (max-width: 480px) {
+  #couple-intro .couple .and {
+    font-size: 1.5rem;
+  }
+}
+#couple-intro .couple .image {
+  margin: 20px auto;
+  border-radius: 10px;
+  width: 90%;
+  height: auto;
+}
+#couple-intro .couple .image {
+  width: 100%;
+}
+@media (max-width: 1024px) {
+  #couple-intro .couple .image {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  #couple-intro .couple .image {
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  #couple-intro .couple .image {
+    width: 100%;
+  }
+}
+#couple-intro .couple .image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(72, 60, 60, 0.5);
+}
+
+#wedding-info {
+  min-height: 100dvh;
+}
+#wedding-info .header-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+#wedding-info .header-title img {
+  width: 250px;
+}
+#wedding-info .header-title p {
+  font-family: "Allura", sans-serif;
+  font-size: 3.5rem;
+  color: #1d1c1c;
+}
+@media (max-width: 1024px) {
+  #wedding-info .header-title p {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .header-title p {
+    font-size: 2.5rem;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .header-title p {
+    font-size: 2rem;
+  }
+}
+#wedding-info .image-gallery {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+#wedding-info .image-gallery img {
+  width: 30%;
+  border-radius: 20px;
+}
+#wedding-info .image-gallery img:nth-child(1),
+#wedding-info .image-gallery img:nth-child(3) {
+  margin-top: 100px;
+  box-shadow: 0 0 8px rgba(152, 151, 151, 0.1);
+}
+@media (max-width: 1024px) {
+  #wedding-info .image-gallery img:nth-child(1),
+  #wedding-info .image-gallery img:nth-child(3) {
+    margin-top: 80px;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .image-gallery img:nth-child(1),
+  #wedding-info .image-gallery img:nth-child(3) {
+    margin-top: 60px;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .image-gallery img:nth-child(1),
+  #wedding-info .image-gallery img:nth-child(3) {
+    margin-top: 20px;
+  }
+}
+#wedding-info .wedding-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  padding: 20px 0;
+}
+#wedding-info .wedding-details .title-body {
+  text-align: center;
+  padding: 10px 0;
+}
+#wedding-info .wedding-details .title-body .text-01 {
+  font-size: 2.5rem;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+@media (max-width: 1024px) {
+  #wedding-info .wedding-details .title-body .text-01 {
+    font-size: 2.2rem;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .wedding-details .title-body .text-01 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .wedding-details .title-body .text-01 {
+    font-size: 0.8125rem;
+  }
+}
+#wedding-info .wedding-details .title-body .text-02 {
+  font-size: 2rem;
+  font-family: "Imperial Script", cursive;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+@media (max-width: 1024px) {
+  #wedding-info .wedding-details .title-body .text-02 {
+    font-size: 1.75rem;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .wedding-details .title-body .text-02 {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .wedding-details .title-body .text-02 {
+    font-size: 1.125rem;
+  }
+}
+#wedding-info .wedding-details .wedding-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2rem;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #1d1c1c;
+  width: 100%;
+  height: 70px;
+  margin-bottom: 20px;
+}
+@media (max-width: 1024px) {
+  #wedding-info .wedding-details .wedding-time {
+    font-size: 1.15rem;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .wedding-details .wedding-time {
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .wedding-details .wedding-time {
+    font-size: 0.6rem;
+  }
+}
+#wedding-info .wedding-details .wedding-time .hour {
+  width: 100%;
+  height: 100px;
+  border-right: 2px solid #1d1c1c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+#wedding-info .wedding-details .wedding-time .month {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  gap: 1px;
+}
+#wedding-info .wedding-details .wedding-time .year {
+  width: 100%;
+  height: 100px;
+  border-left: 2px solid #1d1c1c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#wedding-info .wedding-details .lunar-calendar {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-family: "Roboto Slab", sans-serif;
+  font-style: italic;
+}
+@media (max-width: 1024px) {
+  #wedding-info .wedding-details .lunar-calendar {
+    font-size: 1.25rem;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .wedding-details .lunar-calendar {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .wedding-details .lunar-calendar {
+    font-size: 0.875rem;
+  }
+}
+#wedding-info .wedding-details .title-footer {
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #1d1c1c;
+  margin: 20px 0;
+}
+@media (max-width: 1024px) {
+  #wedding-info .wedding-details .title-footer {
+    font-size: 1.25rem;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .wedding-details .title-footer {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .wedding-details .title-footer {
+    font-size: 0.875rem;
+  }
+}
+/* Container cho 2 location cards */
+#wedding-info .wedding-details .wedding-locations-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin: 40px 0;
+  pointer-events: auto !important;
+}
+@media (max-width: 1024px) {
+  #wedding-info .wedding-details .wedding-locations-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .wedding-details .wedding-locations-wrapper {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 25px;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .wedding-details .wedding-locations-wrapper {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Card location chung */
+#wedding-info .wedding-details .wedding-location-card {
+  background: #fff;
+  border-radius: 30px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 1024px) {
+  #wedding-info .wedding-details .wedding-location-card {
+    padding: 35px 25px;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .wedding-details .wedding-location-card {
+    padding: 30px 20px;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .wedding-details .wedding-location-card {
+    padding: 25px 18px;
+  }
+}
+
+/* Gradient top border */
+#wedding-info .wedding-details .wedding-location-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #c62929, #ebae2a, #c62929);
+  transition: height 0.5s ease;
+}
+
+#wedding-info .wedding-details .wedding-location-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+}
+
+#wedding-info .wedding-details .wedding-location-card:hover::before {
+  height: 100%;
+  opacity: 0.05;
+}
+
+#wedding-info .wedding-details .wedding-location-card:hover .location-icon {
+  transform: scale(1.2) rotate(10deg);
+}
+
+#wedding-info .wedding-details .wedding-location-card:hover .btn-map {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Header với icon */
+#wedding-info .wedding-details .wedding-location-card .location-header {
+  margin-bottom: 25px;
+}
+
+#wedding-info .wedding-details .wedding-location-card .location-header .icon-wrapper {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, #ebae2a 0%, #ffd93d 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(235, 174, 42, 0.4);
+}
+@media (max-width: 1024px) {
+  #wedding-info .wedding-details .wedding-location-card .location-header .icon-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .wedding-details .wedding-location-card .location-header .icon-wrapper {
+    width: 65px;
+    height: 65px;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .wedding-details .wedding-location-card .location-header .icon-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+#wedding-info .wedding-details .wedding-location-card .location-header .icon-wrapper .location-icon {
+  font-size: 2.5rem;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+@media (max-width: 1024px) {
+  #wedding-info .wedding-details .wedding-location-card .location-header .icon-wrapper .location-icon {
+    font-size: 2.2rem;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .wedding-details .wedding-location-card .location-header .icon-wrapper .location-icon {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .wedding-details .wedding-location-card .location-header .icon-wrapper .location-icon {
+    font-size: 1.8rem;
+  }
+}
+
+#wedding-info .wedding-details .wedding-location-card .location-header .location-title {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 700;
+  font-size: 1.75rem;
+  color: #c62929;
+  margin: 0;
+  letter-spacing: 1.5px;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 1024px) {
+  #wedding-info .wedding-details .wedding-location-card .location-header .location-title {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .wedding-details .wedding-location-card .location-header .location-title {
+    font-size: 1.35rem;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .wedding-details .wedding-location-card .location-header .location-title {
+    font-size: 1.2rem;
+  }
+}
+
+/* Body với địa chỉ */
+#wedding-info .wedding-details .wedding-location-card .location-body {
+  margin: 25px 0;
+  padding: 20px 0;
+  border-top: 2px solid #f0f0f0;
+  border-bottom: 2px solid #f0f0f0;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 1024px) {
+  #wedding-info .wedding-details .wedding-location-card .location-body {
+    margin: 20px 0;
+    padding: 18px 0;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .wedding-details .wedding-location-card .location-body {
+    margin: 18px 0;
+    padding: 15px 0;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .wedding-details .wedding-location-card .location-body {
+    margin: 15px 0;
+    padding: 12px 0;
+  }
+}
+
+#wedding-info .wedding-details .wedding-location-card .location-body .location-address {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: #555;
+  margin: 0;
+}
+@media (max-width: 1024px) {
+  #wedding-info .wedding-details .wedding-location-card .location-body .location-address {
+    font-size: 1.05rem;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .wedding-details .wedding-location-card .location-body .location-address {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .wedding-details .wedding-location-card .location-body .location-address {
+    font-size: 0.95rem;
+  }
+}
+
+/* Footer với button */
+#wedding-info .wedding-details .wedding-location-card .location-footer {
+  margin-top: 25px;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 1024px) {
+  #wedding-info .wedding-details .wedding-location-card .location-footer {
+    margin-top: 20px;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .wedding-details .wedding-location-card .location-footer {
+    margin-top: 18px;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .wedding-details .wedding-location-card .location-footer {
+    margin-top: 15px;
+  }
+}
+
+#wedding-info .wedding-details .wedding-location-card .location-footer .btn-map {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 35px;
+  border-radius: 50px;
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(135deg, #c62929 0%, #d64545 100%);
+  box-shadow: 0 8px 25px rgba(198, 41, 41, 0.4);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 1024px) {
+  #wedding-info .wedding-details .wedding-location-card .location-footer .btn-map {
+    padding: 13px 30px;
+    font-size: 1.05rem;
+    gap: 8px;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .wedding-details .wedding-location-card .location-footer .btn-map {
+    padding: 12px 28px;
+    font-size: 1rem;
+    gap: 8px;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .wedding-details .wedding-location-card .location-footer .btn-map {
+    padding: 10px 25px;
+    font-size: 0.9rem;
+    gap: 6px;
+  }
+}
+
+#wedding-info .wedding-details .wedding-location-card .location-footer .btn-map .btn-icon {
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+@media (max-width: 1024px) {
+  #wedding-info .wedding-details .wedding-location-card .location-footer .btn-map .btn-icon {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 768px) {
+  #wedding-info .wedding-details .wedding-location-card .location-footer .btn-map .btn-icon {
+    font-size: 1.1rem;
+  }
+}
+@media (max-width: 480px) {
+  #wedding-info .wedding-details .wedding-location-card .location-footer .btn-map .btn-icon {
+    font-size: 1rem;
+  }
+}
+
+#wedding-info .wedding-details .wedding-location-card .location-footer .btn-map .btn-text {
+  position: relative;
+}
+
+#wedding-info .wedding-details .wedding-location-card .location-footer .btn-map::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+#wedding-info .wedding-details .wedding-location-card .location-footer .btn-map:hover::before {
+  left: 100%;
+}
+
+#wedding-info .wedding-details .wedding-location-card .location-footer .btn-map:hover .btn-icon {
+  transform: scale(1.2) rotate(15deg);
+}
+
+#wedding-info .wedding-details .wedding-location-card .location-footer .btn-map:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Màu riêng cho nhà gái - tone vàng gold */
+#wedding-info .wedding-details .wedding-location-card.bride-side .icon-wrapper {
+  background: linear-gradient(135deg, #ebae2a 0%, #f5c563 100%);
+  box-shadow: 0 10px 30px rgba(235, 174, 42, 0.4);
+}
+
+#wedding-info .wedding-details .wedding-location-card.bride-side .location-title {
+  color: #ebae2a;
+}
+
+#wedding-info .wedding-details .wedding-location-card.bride-side .btn-map {
+  background: linear-gradient(135deg, #ebae2a 0%, #f5c563 100%);
+  box-shadow: 0 8px 25px rgba(235, 174, 42, 0.4);
+}
+
+#wedding-info .wedding-details .wedding-location-card.bride-side .btn-map:hover {
+  box-shadow: 0 10px 30px rgba(235, 174, 42, 0.5);
+}
+
+/* Màu riêng cho nhà trai - tone đỏ */
+#wedding-info .wedding-details .wedding-location-card.groom-side .icon-wrapper {
+  background: linear-gradient(135deg, #c62929 0%, #d64545 100%);
+  box-shadow: 0 10px 30px rgba(198, 41, 41, 0.4);
+}
+
+#wedding-info .wedding-details .wedding-location-card.groom-side .location-title {
+  color: #c62929;
+}
+
+#wedding-info .wedding-details .wedding-location-card.groom-side .btn-map {
+  background: linear-gradient(135deg, #c62929 0%, #d64545 100%);
+  box-shadow: 0 8px 25px rgba(198, 41, 41, 0.4);
+}
+
+#wedding-info .wedding-details .wedding-location-card.groom-side .btn-map:hover {
+  box-shadow: 0 10px 30px rgba(198, 41, 41, 0.5);
+}
+
+#gallery-section {
+  height: auto !important;
+  padding: 60px 0;
+  background: linear-gradient(180deg, #fffaf5 0%, #fff 50%, #fffaf5 100%);
+}
+#gallery-section .gallery {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+#gallery-section .gallery .title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+  font-family: "My Soul", sans-serif;
+  color: #8b6914;
+  margin-bottom: 40px;
+}
+#gallery-section .gallery .title p {
+  font-size: 3rem;
+  padding-top: 7px;
+  position: relative;
+}
+#gallery-section .gallery .title p::before,
+#gallery-section .gallery .title p::after {
+  content: '♥';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: #ebae2a;
+  opacity: 0.6;
+}
+#gallery-section .gallery .title p::before {
+  left: -30px;
+}
+#gallery-section .gallery .title p::after {
+  right: -30px;
+}
+@media (max-width: 1024px) {
+  #gallery-section .gallery .title p {
+    font-size: 2.5rem;
+  }
+}
+@media (max-width: 768px) {
+  #gallery-section .gallery .title p {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 480px) {
+  #gallery-section .gallery .title p {
+    font-size: 1.75rem;
+  }
+  #gallery-section .gallery .title p::before,
+  #gallery-section .gallery .title p::after {
+    display: none;
+  }
+}
+#gallery-section .gallery .title img {
+  max-width: 100px;
+  opacity: 0.8;
+}
+#gallery-section .gallery .album {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 200px 200px 200px 200px;
+  grid-template-areas:
+    "img1 img1 img3"
+    "img1 img1 img4"
+    "img5 img2 img2"
+    "img6 img2 img2";
+  gap: 15px;
+  margin: auto;
+}
+@media (max-width: 768px) {
+  #gallery-section .gallery .album {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 180px 180px 180px 180px;
+    grid-template-areas:
+      "img1 img3"
+      "img1 img4"
+      "img5 img2"
+      "img6 img2";
+    gap: 10px;
+  }
+}
+@media (max-width: 480px) {
+  #gallery-section .gallery .album {
+    grid-template-rows: 150px 150px 150px 150px;
+    gap: 8px;
+  }
+}
+#gallery-section .gallery .album .img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                      box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                      filter 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              filter 0.4s ease;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform, box-shadow;
+}
+#gallery-section .gallery .album .img:hover {
+  -webkit-transform: scale(1.05) translateY(-5px);
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 20px 40px rgba(139, 105, 20, 0.2),
+              0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  -webkit-filter: brightness(1.05) saturate(1.1);
+  filter: brightness(1.05) saturate(1.1);
+}
+#gallery-section .gallery .album .img:active {
+  -webkit-transform: scale(1.02);
+  transform: scale(1.02);
+  -webkit-transition: transform 0.15s ease;
+  transition: transform 0.15s ease;
+}
+#gallery-section .gallery .album .img1 {
+  grid-area: img1;
+}
+#gallery-section .gallery .album .img2 {
+  grid-area: img2;
+}
+#gallery-section .gallery .album .img3 {
+  grid-area: img3;
+}
+#gallery-section .gallery .album .img4 {
+  grid-area: img4;
+}
+#gallery-section .gallery .album .img5 {
+  grid-area: img5;
+}
+#gallery-section .gallery .album .img6 {
+  grid-area: img6;
+}
+
+#thank-you-section {
+  max-height: auto !important;
+  margin-top: 60px;
+}
+
+#thank-you-section .footer {
+  position: relative;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  #thank-you-section .footer {
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  #thank-you-section .footer {
+    min-height: 350px;
+  }
+}
+
+#thank-you-section .footer .footer-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#thank-you-section .footer .footer-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center 30%;
+     object-position: center 30%;
+}
+
+#thank-you-section .footer .footer-image .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(29, 28, 28, 0) 0%,
+    rgba(29, 28, 28, 0.3) 30%,
+    rgba(29, 28, 28, 0.85) 70%,
+    rgba(29, 28, 28, 0.95) 100%
+  );
+}
+
+#thank-you-section .footer .footer-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  min-height: 500px;
+  padding: 60px 20px;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  #thank-you-section .footer .footer-content {
+    min-height: 400px;
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  #thank-you-section .footer .footer-content {
+    min-height: 350px;
+    padding: 30px 15px;
+  }
+}
+
+#thank-you-section .footer .footer-content .decorative-line {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ebae2a, transparent);
+  margin-bottom: 25px;
+}
+
+#thank-you-section .footer .footer-content .text_01 {
+  font-family: "Allura", cursive;
+  font-size: 5rem;
+  color: #fff;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+}
+
+@media (max-width: 1024px) {
+  #thank-you-section .footer .footer-content .text_01 {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #thank-you-section .footer .footer-content .text_01 {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #thank-you-section .footer .footer-content .text_01 {
+    font-size: 2.5rem;
+  }
+}
+
+#thank-you-section .footer .footer-content .text_02 {
+  font-family: "Roboto Slab", serif;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  #thank-you-section .footer .footer-content .text_02 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #thank-you-section .footer .footer-content .text_02 {
+    font-size: 1rem;
+  }
+}
+
+#thank-you-section .footer .footer-content .hearts {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+#thank-you-section .footer .footer-content .hearts span {
+  color: #ebae2a;
+  font-size: 1rem;
+  opacity: 0.8;
+  -webkit-animation: heartFloat 2s ease-in-out infinite;
+  animation: heartFloat 2s ease-in-out infinite;
+}
+
+#thank-you-section .footer .footer-content .hearts span:nth-child(1) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+
+#thank-you-section .footer .footer-content .hearts span:nth-child(2) {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+  font-size: 1.2rem;
+}
+
+#thank-you-section .footer .footer-content .hearts span:nth-child(3) {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+@-webkit-keyframes heartFloat {
+  0%, 100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+@keyframes heartFloat {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+#thank-you-section .footer .footer-content .text_03 {
+  font-family: "Imperial Script", cursive;
+  font-size: 2.5rem;
+  color: #ebae2a;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  #thank-you-section .footer .footer-content .text_03 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #thank-you-section .footer .footer-content .text_03 {
+    font-size: 1.75rem;
+  }
+}
+
+/* =============================================
+   CUSTOM SMOOTH AOS ANIMATIONS FOR GALLERY
+   ============================================= */
+
+/* Override AOS default transition for smoother feel */
+[data-aos] {
+  -webkit-transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Gallery specific smooth animations */
+#gallery-section [data-aos] {
+  -webkit-transition-property: opacity, transform !important;
+  transition-property: opacity, transform !important;
+  -webkit-transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+  -webkit-transition-duration: 1s !important;
+  transition-duration: 1s !important;
+}
+
+/* Custom fade-up with scale for gallery images */
+#gallery-section [data-aos="fade-up"] {
+  opacity: 0;
+  -webkit-transform: translateY(60px) scale(0.95);
+  transform: translateY(60px) scale(0.95);
+}
+
+#gallery-section [data-aos="fade-up"].aos-animate {
+  opacity: 1;
+  -webkit-transform: translateY(0) scale(1);
+  transform: translateY(0) scale(1);
+}
+
+
+/* Stagger effect enhancement */
+#gallery-section .album .img1[data-aos] { transition-delay: 0s !important; }
+#gallery-section .album .img2[data-aos] { transition-delay: 0.15s !important; }
+#gallery-section .album .img3[data-aos] { transition-delay: 0.3s !important; }
+#gallery-section .album .img4[data-aos] { transition-delay: 0.45s !important; }
+#gallery-section .album .img5[data-aos] { transition-delay: 0.6s !important; }
+#gallery-section .album .img6[data-aos] { transition-delay: 0.75s !important; }
+
+/* Title smooth animation */
+#gallery-section .title[data-aos] {
+  -webkit-transition-duration: 1.2s !important;
+  transition-duration: 1.2s !important;
+}
+
+#gallery-section .title[data-aos="fade-up"] {
+  opacity: 0;
+  -webkit-transform: translateY(40px);
+  transform: translateY(40px);
+}
+
+#gallery-section .title[data-aos="fade-up"].aos-animate {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+/*# sourceMappingURL=app.css.map */
+
+

@@ -1,0 +1,156 @@
+@use "variables" as *;
+@use "breakpoints" as *;
+
+#gallery-section {
+    height: auto !important;
+    padding: 60px 0;
+    background: linear-gradient(180deg, #fffaf5 0%, #fff 50%, #fffaf5 100%);
+
+    .gallery {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 15px;
+
+        .title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 15px;
+            font-family: "My Soul", sans-serif;
+            color: #8b6914;
+            margin-bottom: 40px;
+
+            p {
+                font-size: 3rem;
+                padding-top: 7px;
+                position: relative;
+
+                &::before,
+                &::after {
+                    content: '♥';
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    font-size: 1rem;
+                    color: $text-color-secondary;
+                    opacity: 0.6;
+                }
+
+                &::before {
+                    left: -30px;
+                }
+
+                &::after {
+                    right: -30px;
+                }
+
+                @include responsive(font-size, (
+                    lg: 2.5rem,
+                    md: 2rem,
+                    sm: 1.75rem,
+                ));
+
+                @media (max-width: 480px) {
+                    &::before,
+                    &::after {
+                        display: none;
+                    }
+                }
+            }
+
+            img {
+                max-width: 100px;
+                opacity: 0.8;
+            }
+        }
+
+        .album {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 200px 200px 200px 200px;
+            grid-template-areas:
+                "img1 img1 img3"
+                "img1 img1 img4"
+                "img5 img2 img2"
+                "img6 img2 img2";
+            gap: 15px;
+            margin: auto;
+
+            @media (max-width: 768px) {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: 180px 180px 180px 180px;
+                grid-template-areas:
+                    "img1 img3"
+                    "img1 img4"
+                    "img5 img2"
+                    "img6 img2";
+                gap: 10px;
+            }
+
+            @media (max-width: 480px) {
+                grid-template-rows: 150px 150px 150px 150px;
+                gap: 8px;
+            }
+
+            .img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center center;
+                border-radius: 12px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                cursor: default;
+                position: relative;
+                overflow: hidden;
+                display: block;
+                transition: opacity 0.3s ease;
+                backface-visibility: hidden;
+                user-select: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+
+                // Animation fade in khi ảnh mới xuất hiện
+                &.fade-in {
+                    animation: fadeInScale 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                }
+
+                &:hover {
+                    opacity: 0.9;
+                }
+
+                &:active {
+                    transform: none;
+                    opacity: 0.9;
+                }
+            }
+
+            .img1 { grid-area: img1; }
+            .img2 { grid-area: img2; }
+            .img3 { grid-area: img3; }
+            .img4 { grid-area: img4; }
+            .img5 { grid-area: img5; }
+            .img6 { grid-area: img6; }
+
+            // Keyframes cho fade in với scale - mượt mà và tự nhiên
+            @keyframes fadeInScale {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.9) translateY(10px);
+                }
+                50% {
+                    opacity: 0.7;
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+        }
+    }
+
+}
