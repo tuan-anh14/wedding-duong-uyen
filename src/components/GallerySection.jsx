@@ -126,7 +126,7 @@ const GallerySection = () => {
         const previousSrcs = prevImages.map(img => img.src);
         return getRandomImages(previousSrcs);
       });
-    }, 8000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
